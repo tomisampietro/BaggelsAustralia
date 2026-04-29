@@ -91,6 +91,7 @@ BAGELS: Dict[str, List[str]] = {
         "tomato",
         "onion",
         "chicken schnitzel",
+        "a pinch of salt and pepper",
         "peri peri sauce",
         "lettuce",
     ],
