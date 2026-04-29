@@ -15,14 +15,14 @@ import streamlit as st
 # --- BAGELS ---
 BAGELS: Dict[str, List[str]] = {
     "1 - SCHMEAR": [
-        "schmear herb/plain/jalapeño top & bottom",
+        "schmear",
     ],
     "2 - CLASSIC LOX": [
-        "herb schmear top & bottom",
-        "capers on top",
-        "lox on bottom",
-        "tomato sobre el lox",
-        "red onion sobre el tomate",
+        "herb schmear",
+        "capers",
+        "lox",
+        "tomato",
+        "red onion",
     ],
     "3 - LOX & SCHMEAR": [
         "herb schmear",
@@ -47,7 +47,7 @@ BAGELS: Dict[str, List[str]] = {
         "mayo top only",
         "tuna mix bottom",
         "tomato sobre tuna",
-        "pickled onion sobre tomate",
+        "pickled onion",
         "lettuce arriba",
     ],
     "6 - EGG MAYO": [
@@ -58,8 +58,8 @@ BAGELS: Dict[str, List[str]] = {
         "lettuce arriba",
     ],
     "7 - SHAVED TURKEY": [
-        "mayo top",
-        "mustard bottom",
+        "mayo",
+        "mustard",
         "smoked turkey",
         "tomato",
         "onion",
@@ -69,20 +69,34 @@ BAGELS: Dict[str, List[str]] = {
         "dressing",
     ],
     "8 - PASTRAMI REUBEN": [
-        "russian dressing top & bottom",
-        "pastrami bottom",
-        "pickles arriba",
-        "swiss cheese sobre pickles",
-        "sauerkraut sobre cheese",
+        "russian dressing",
+        "pastrami",
+        "pickles",
+        "swiss cheese",
+        "sauerkraut",
     ],
-    "9 - PERI PERI": [
-        "mayo top & bottom",
-        "cheddar top side",
-        "tomato + onion sobre cheese",
-        "chicken schnitzel o halloumi",
-        "peri peri sauce sobre proteína",
-        "lettuce arriba",
+    "9 - PERI PERI - halloumi": [
+        "mayo top",
+        "cheddar",
+        "tomato",
+        "onion",
+        "halloumi",
+        "peri peri sauce",
+        "lettuce",
     ],
+
+        "9 - PERI PERI - chicken": [
+        "mayo top",
+        "cheddar",
+        "tomato",
+        "onion",
+        "chicken schnitzel",
+        "peri peri sauce",
+        "lettuce",
+    ],
+
+
+
     "10 - KATSU": [
         "miso mayo top & bottom",
         "katsu cucumbers",
@@ -117,11 +131,20 @@ BAGELS: Dict[str, List[str]] = {
         "rocket arriba",
         "salad dressing",
     ],
-    "14 - BREKKY": [
-        "russian dressing top & bottom",
-        "egg sheet bottom",
-        "american cheese sobre egg",
-        "beef pastrami o halloumi",
+    "14 - BREKKY - beef pastrami": [
+        "russian dressing",
+        "egg sheet",
+        "american cheese",
+        "beef pastrami",
+        "potato latke",
+        "everything bagel seasoning",
+    ],
+
+        "14 - BREKKY - halloumi": [
+        "russian dressing",
+        "egg sheet",
+        "american cheese",
+        "halloumi",
         "potato latke",
         "everything bagel seasoning",
     ],
