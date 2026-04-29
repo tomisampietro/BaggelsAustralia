@@ -305,8 +305,13 @@ if "total" not in st.session_state:
 
 if "practice_mode" not in st.session_state:
     st.session_state.practice_mode = "Todas"
-if "selected_items" not in st.session_state:
-    st.session_state.selected_items = []
+if "selected_items_by_dataset" not in st.session_state:
+    st.session_state.selected_items_by_dataset = {name: [] for name in DATASETS.keys()}
+
+# Compatibilidad si venís de una versión anterior
+if "selected_items" in st.session_state:
+    st.session_state.selected_items_by_dataset[st.session_state.dataset] = st.session_state.selected_items
+    del st.session_state["selected_items"]
 
 if "review_queue" not in st.session_state:
     st.session_state.review_queue = []
@@ -322,7 +327,8 @@ def get_active_stats() -> Dict[str, ItemStats]:
 
 def current_candidates(items: Dict[str, List[str]]) -> Optional[List[str]]:
     if st.session_state.practice_mode == "Selección manual":
-        return st.session_state.selected_items or list(items.keys())
+        selected = st.session_state.selected_items_by_dataset.get(st.session_state.dataset, [])
+        return selected or list(items.keys())
     if st.session_state.practice_mode == "Difícil":
         difficult = DIFFICULT_BY_DATASET.get(st.session_state.dataset, [])
         difficult = [p for p in difficult if p in items]
@@ -378,41 +384,34 @@ with st.sidebar:
     )
 
     if st.session_state.practice_mode == "Selección manual":
-        st.subheader("🎯 Set de práctica")
-
-        query = st.text_input("Buscar (nombre / número)", value="")
+        st.subheader("🎯 Selector de comandas")
         options = list(ACTIVE_ITEMS.keys())
+        current_selection = st.session_state.selected_items_by_dataset.get(st.session_state.dataset, [])
 
-        if query.strip():
-            q = query.strip().lower()
-            filtered = [p for p in options if q in p.lower()]
-        else:
-            filtered = options[:10]
+        selected_now = st.multiselect(
+            "Elegí qué querés practicar",
+            options=options,
+            default=[x for x in current_selection if x in options],
+            placeholder="Si no elegís nada, salen todas",
+            key=f"selector_{st.session_state.dataset}",
+        )
 
-        to_add = st.selectbox("Agregar", options=["— Elegí —"] + filtered, index=0)
+        st.session_state.selected_items_by_dataset[st.session_state.dataset] = selected_now
 
-        col_add, col_clear = st.columns(2)
-        with col_add:
-            if st.button("➕ Agregar", use_container_width=True):
-                if to_add != "— Elegí —" and to_add not in st.session_state.selected_items:
-                    st.session_state.selected_items.append(to_add)
+        col_all, col_clear = st.columns(2)
+        with col_all:
+            if st.button("✅ Seleccionar todas", use_container_width=True, key=f"all_{st.session_state.dataset}"):
+                st.session_state.selected_items_by_dataset[st.session_state.dataset] = options
+                st.rerun()
         with col_clear:
-            if st.button("🧹 Vaciar set", use_container_width=True):
-                st.session_state.selected_items = []
+            if st.button("🧹 Vaciar", use_container_width=True, key=f"clear_{st.session_state.dataset}"):
+                st.session_state.selected_items_by_dataset[st.session_state.dataset] = []
+                st.rerun()
 
-        st.divider()
-        st.write("**Seleccionadas:**")
-        if not st.session_state.selected_items:
-            st.info("Vacío → uso todas.")
+        if selected_now:
+            st.success(f"Practicando {len(selected_now)} de {len(options)} comandas.")
         else:
-            for p in st.session_state.selected_items:
-                c1, c2 = st.columns([6, 1])
-                with c1:
-                    st.write(p)
-                with c2:
-                    if st.button("✖", key=f"rm_{st.session_state.dataset}_{p}"):
-                        st.session_state.selected_items = [x for x in st.session_state.selected_items if x != p]
-                        st.rerun()
+            st.info("Sin selección → se practican todas.")
 
     if st.session_state.practice_mode == "Difícil":
         difficult = DIFFICULT_BY_DATASET.get(st.session_state.dataset, [])
@@ -439,6 +438,10 @@ pool_now = current_candidates(ACTIVE_ITEMS) or list(ACTIVE_ITEMS.keys())
 if st.session_state.current not in pool_now:
     st.session_state.current = pick_next_with_queue(ACTIVE_ITEMS, ACTIVE_STATS)
 
+# Ingredientes visibles: si estás en selección manual/difícil, mostramos los ingredientes del set activo
+training_items = {name: ACTIVE_ITEMS[name] for name in pool_now if name in ACTIVE_ITEMS}
+INGREDIENTS_MASTER = all_ingredients(training_items or ACTIVE_ITEMS)
+
 
 tab_quiz, tab_repaso, tab_progreso = st.tabs(["🎯 Juego", "📚 Repaso", "💾 Progreso"])
 
@@ -453,7 +456,7 @@ with tab_quiz:
         acc = (st.session_state.score / st.session_state.total * 100) if st.session_state.total else 0.0
         st.metric("Precisión (%)", f"{acc:.1f}")
     with colD:
-        st.caption(f"Dataset: **{st.session_state.dataset}** · Modo: **{st.session_state.practice_mode}**")
+        st.caption(f"Dataset: **{st.session_state.dataset}** · Modo: **{st.session_state.practice_mode}** · Set: **{len(pool_now)} ítems**")
 
     st.divider()
 
