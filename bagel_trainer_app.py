@@ -46,16 +46,16 @@ BAGELS: Dict[str, List[str]] = {
     "5 - TUNA": [
         "mayo top only",
         "tuna mix bottom",
-        "tomato sobre tuna",
+        "tomato",
         "pickled onion",
-        "lettuce arriba",
+        "lettuce",
     ],
     "6 - EGG MAYO": [
-        "mayo top only",
-        "egg mayo bottom",
-        "tomato sobre egg",
-        "pickled onion sobre tomate",
-        "lettuce arriba",
+        "mayo",
+        "egg mayo",
+        "tomato",
+        "pickled onion",
+        "lettuce",
     ],
     "7 - SHAVED TURKEY": [
         "mayo",
@@ -98,38 +98,60 @@ BAGELS: Dict[str, List[str]] = {
 
 
 
-    "10 - KATSU": [
-        "miso mayo top & bottom",
+    "10 - KATSU - chicken": [
+        "miso mayo",
         "katsu cucumbers",
-        "chicken schnitzel o halloumi",
-        "tonkatsu sauce sobre proteína",
-        "katsu slaw arriba",
+        "chicken schnitzel",
+        "tonkatsu sauce",
+        "katsu slaw",
     ],
-    "11 - BUFFALO": [
-        "ranch top & bottom",
-        "pickles arriba",
-        "cheddar sobre pickles",
-        "chicken schnitzel o halloumi",
-        "buffalo sauce sobre proteína",
+
+        "10 - KATSU - halloumi": [
+        "miso mayo",
+        "katsu cucumbers",
+        "halloumi",
+        "tonkatsu sauce",
+        "katsu slaw",
+    ],
+
+    "11 - BUFFALO - chicken": [
+        "ranch",
+        "pickles",
+        "cheddar",
+        "chicken schnitzel",
+        "buffalo sauce",
         "shredded carrot",
-        "shredded lettuce arriba",
+        "shredded lettuce",
     ],
+
+        "11 - BUFFALO - halloumi": [
+        "ranch",
+        "pickles",
+        "cheddar",
+        "halloumi",
+        "buffalo sauce",
+        "shredded carrot",
+        "shredded lettuce",
+    ],
+
     "12 - CAESAR SCHNITTY": [
-        "caesar dressing top & bottom",
+        "caesar dressing",
         "turkey bacon bits",
         "chicken schnitzel",
         "herb egg mayo",
         "cos lettuce",
     ],
     "13 - VEGGIE": [
-        "plain schmear top & bottom",
-        "jalapeños + bread & butter pickles arriba",
-        "cheddar sobre jalapeños + pickles",
-        "beetroot bottom",
-        "raw red onion sobre beetroot",
-        "tomato sobre onion",
-        "carrot sobre tomate",
-        "rocket arriba",
+        "plain schmear",
+        "jalapeños",
+        "bread & butter pickles",
+        "cheddar",
+        "pickles",
+        "beetroot",
+        "raw red onion",
+        "tomato",
+        "carrot",
+        "rocket",
         "salad dressing",
     ],
     "14 - BREKKY - beef pastrami": [
