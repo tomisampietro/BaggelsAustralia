@@ -22,7 +22,7 @@ BAGELS: Dict[str, List[str]] = {
         "capers",
         "lox",
         "tomato",
-        "red onion",
+        "onion",
     ],
     "3 - LOX & SCHMEAR": [
         "herb schmear",
@@ -44,8 +44,8 @@ BAGELS: Dict[str, List[str]] = {
         "lemon",
     ],
     "5 - TUNA": [
-        "mayo top only",
-        "tuna mix bottom",
+        "mayo",
+        "tuna mix",
         "tomato",
         "pickled onion",
         "lettuce",
@@ -148,7 +148,7 @@ BAGELS: Dict[str, List[str]] = {
         "cheddar",
         "pickles",
         "beetroot",
-        "raw red onion",
+        "onion",
         "tomato",
         "carrot",
         "rocket",
