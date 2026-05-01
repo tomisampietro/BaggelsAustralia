@@ -52,7 +52,7 @@ BAGELS: Dict[str, List[str]] = {
     ],
     "6 - EGG MAYO": [
         "mayo",
-        "egg mayo",
+        "herb egg mayo",
         "tomato",
         "pickled onion",
         "lettuce",
