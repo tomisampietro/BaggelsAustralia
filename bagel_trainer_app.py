@@ -76,7 +76,7 @@ BAGELS: Dict[str, List[str]] = {
         "sauerkraut",
     ],
     "9 - PERI PERI - halloumi": [
-        "mayo top",
+        "mayo",
         "cheddar",
         "tomato",
         "onion",
@@ -86,7 +86,7 @@ BAGELS: Dict[str, List[str]] = {
     ],
 
         "9 - PERI PERI - chicken": [
-        "mayo top",
+        "mayo",
         "cheddar",
         "tomato",
         "onion",
@@ -158,7 +158,7 @@ BAGELS: Dict[str, List[str]] = {
         "russian dressing",
         "egg sheet",
         "american cheese",
-        "beef pastrami",
+        "pastrami",
         "potato latke",
         "everything bagel seasoning",
     ],
